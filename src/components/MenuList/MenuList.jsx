@@ -1,5 +1,6 @@
 import { MenuListItem } from "../MenuListItem/MenuListItem";
 import s from "./style.module.css";
+import { DIFFICULTIES } from "./constants";
 
 export const MenuList = (props) => {
     const handleItemClick = (difficulty) => {
@@ -11,10 +12,13 @@ export const MenuList = (props) => {
 
     return (
         <div className={s.container}>
-            <MenuListItem isSelected={props.difficulty === "Low"} onClick={handleItemClick} difficulty="Low" label="Easy"/>
-            <MenuListItem isSelected={props.difficulty === "Medium"} onClick={handleItemClick} difficulty="Medium" label="Moderate"/>
-            <MenuListItem isSelected={props.difficulty === "High"} onClick={handleItemClick} difficulty="High" label="Challenging"/>
-            <MenuListItem isSelected={props.difficulty === "Insane"}  onClick={handleItemClick} difficulty="Insane" label="Extreme"/>
+            {DIFFICULTIES.map((difficulty) => (
+                <MenuListItem
+                    isSelected={props.difficulty === difficulty}
+                    onClick={handleItemClick}
+                    difficulty={difficulty}
+                />
+            ))}
         </div>
     );
 };
